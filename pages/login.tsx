@@ -1,17 +1,18 @@
-import LandingBody from "components/Home";
+import LoginBody from "components/Login";
 import LandingLayout from "Layouts/Landing";
 import type { NextPage } from "next";
 import Head from "next/head";
+import React from "react";
 
-const Home: NextPage = () => {
+const LoginPage: NextPage = () => {
   return (
     <LandingLayout>
       <Head>
-        <title>Lol, this is a title</title>
+        <title>Login / Lol</title>
       </Head>
-      <LandingBody />
+      <LoginBody />
     </LandingLayout>
   );
 };
 
-export default Home;
+export default LoginPage;

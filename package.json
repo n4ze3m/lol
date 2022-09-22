@@ -15,7 +15,10 @@
     "@mantine/form": "^5.4.0",
     "@mantine/hooks": "^5.4.0",
     "@mantine/next": "^5.4.0",
+    "@prisma/client": "4.3.1",
     "@supabase/auth-helpers-nextjs": "^0.2.8",
+    "@supabase/auth-helpers-react": "^0.2.4",
+    "@supabase/supabase-js": "^1.35.6",
     "@trpc/client": "^9.27.2",
     "@trpc/next": "^9.27.2",
     "@trpc/react": "^9.27.2",
@@ -24,6 +27,7 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-query": "3",
+    "tabler-icons-react": "^1.55.0",
     "zod": "^3.19.1"
   },
   "devDependencies": {
