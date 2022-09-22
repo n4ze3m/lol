@@ -34,7 +34,7 @@ export function LolCard(data: message) {
           <Heart />
         </Center>
 
-        <Text size="xs" color="dimmed" mt="md">
+        <Text size="xs" color="dimmed" mt="md" align="center">
           {
             // time ago
             moment(data.created_at).fromNow()

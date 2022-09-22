@@ -18,6 +18,7 @@ import {
   ActionIcon,
 } from "@mantine/core";
 import { supabaseClient } from "@supabase/auth-helpers-nextjs";
+import { useUser } from "@supabase/auth-helpers-react";
 import { Auth } from "@supabase/ui";
 import { useRouter } from "next/router";
 import React from "react";
@@ -170,18 +171,17 @@ const data = [
   },
 ];
 function DashboardLayout({ children }: Props) {
-  const [open, setOpen] = React.useState(false);
   const [email, setEmail] = React.useState("...");
-  const session = Auth.useUser();
+  const {user } = useUser()
   const [avatar, setAvatar] = React.useState(
     "https://avatars.dicebear.com/api/jdenticon/xdsds-sdsdsds-dsdsds.svg?background=%230000ff"
   );
   React.useEffect(() => {
     setAvatar(
-      `https://avatars.dicebear.com/api/jdenticon/${session.user?.id}.svg?background=%230000ff`
+      `https://avatars.dicebear.com/api/jdenticon/${user?.id}.svg?background=%230000ff`
     );
-    setEmail(session.user?.email || "...");
-  }, [session]);
+    setEmail(user?.email || "...");
+  }, [user]);
   const router = useRouter();
   const [opened, setOpened] = React.useState(false);
   const { classes, cx } = useStyles();

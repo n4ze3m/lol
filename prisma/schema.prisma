@@ -12,9 +12,10 @@ datasource db {
 
 model profile {
   id           String    @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
-  email        String
   username     String
-  notify_email Boolean   @default(true)
+  email_notify Boolean   @default(true)
+  question     String    @default("Send me anonymous messages lol!")
+  pause        Boolean   @default(false)
   message      message[]
 }
 
@@ -23,6 +24,7 @@ model message {
   message    String
   opened     Boolean  @default(false)
   user_id    String
+  question   String   @default("Send me anonymous messages lol!")
   user       profile  @relation(fields: [user_id], references: [id])
   created_at DateTime @default(now()) @db.Timestamptz(6)
 }
