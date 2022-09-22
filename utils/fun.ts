@@ -37,10 +37,22 @@ export const answerList = [
     'I hate pizza',
 ]
 
+export const emailSubjectList = [
+    'Knock Knock',
+    'Someone sent you a message',
+    'Someone sent you a secret',
+    'Hey, I have a secret for you',
+    'Hey, I have a message for you',
+]
+
 export const randomQuestion = () => {
     return questionsList[Math.floor(Math.random() * questionsList.length)]
 }
 
 export const randomAnswer = () => {
     return answerList[Math.floor(Math.random() * answerList.length)]
+}
+
+export const randomEmailSubject = () => {
+    return emailSubjectList[Math.floor(Math.random() * emailSubjectList.length)]
 }

@@ -1,6 +1,7 @@
 import { Card, createStyles, Center, Indicator, Text } from "@mantine/core";
 import { message } from "@prisma/client";
 import moment from "moment";
+import { useRouter } from "next/router";
 import { Heart } from "tabler-icons-react";
 
 const useStyles = createStyles((theme) => ({
@@ -26,17 +27,22 @@ const useStyles = createStyles((theme) => ({
 
 export function LolCard(data: message) {
   const { classes } = useStyles();
+  const router = useRouter();
 
   return (
     <Indicator color="green" disabled={!data.opened} label={"✓"} size={19}>
-      <Card shadow="sm" p="lg" className={classes.card}>
+      <Card
+        onClick={() => router.push(`/me/a/${data.id}`)}
+        shadow="sm"
+        p="lg"
+        className={classes.card}
+      >
         <Center>
           <Heart />
         </Center>
 
         <Text size="xs" color="dimmed" mt="md" align="center">
           {
-            // time ago
             moment(data.created_at).fromNow()
           }
         </Text>

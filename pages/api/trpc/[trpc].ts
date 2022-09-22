@@ -84,7 +84,39 @@ export const appRouter = trpc
         message: "ok",
       };
     },
-  });
+  }).query("questionAnswer", {
+    input: z.object({
+      userId: z.string().nullish(),
+      questionId: z.string().nullish(),
+    }).nullish(),
+    resolve: async ({ input }) => {
+      if (!input?.userId || !input?.questionId) {
+        return null;
+      }
+
+      const answer = await database.message.findFirst({
+        where: {
+          // user_id: input.userId,
+          id: input.questionId,
+        },
+      });
+
+      if (!answer) {
+        return null;
+      }
+
+      await database.message.update({
+        where: {
+          id: input.questionId,
+        },
+        data: {
+          opened: true,
+        }
+      })
+
+      return answer;
+    }
+  })
 
 // export type definition of API
 export type AppRouter = typeof appRouter;
