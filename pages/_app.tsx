@@ -7,35 +7,36 @@ import { withTRPC } from "@trpc/next";
 import { UserProvider } from "@supabase/auth-helpers-react";
 import { supabaseClient } from "@supabase/auth-helpers-nextjs";
 import React from "react";
+import { SupabaseProvider } from "utils/supabase";
 
 function MyApp(props: AppProps) {
   const { Component, pageProps } = props;
 
   return (
-    <React.Fragment>
-      <Head>
-        <title>
-          Lol, I'm not sure what to put here, but I'm sure it's important
-        </title>
-        <meta
-          name="viewport"
-          content="minimum-scale=1, initial-scale=1, width=device-width"
-        />
-      </Head>
+    <SupabaseProvider>
+      <UserProvider supabaseClient={supabaseClient}>
+        <Head>
+          <title>
+            Lol, I'm not sure what to put here, but I'm sure it's important
+          </title>
+          <meta
+            name="viewport"
+            content="minimum-scale=1, initial-scale=1, width=device-width"
+          />
+        </Head>
 
-      <MantineProvider
-        withGlobalStyles
-        withNormalizeCSS
-        theme={{
-          colorScheme: "dark",
-          fontFamily: "Poppins",
-        }}
-      >
-        <UserProvider supabaseClient={supabaseClient}>
+        <MantineProvider
+          withGlobalStyles
+          withNormalizeCSS
+          theme={{
+            colorScheme: "dark",
+            fontFamily: "Poppins",
+          }}
+        >
           <Component {...pageProps} />
-        </UserProvider>
-      </MantineProvider>
-    </React.Fragment>
+        </MantineProvider>
+      </UserProvider>
+    </SupabaseProvider>
   );
 }
 export default withTRPC<AppRouter>({

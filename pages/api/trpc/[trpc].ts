@@ -1,20 +1,30 @@
 import * as trpc from '@trpc/server';
 import * as trpcNext from '@trpc/server/adapters/next';
+import { database } from 'utils/database';
 import { z } from 'zod';
 
 export const appRouter = trpc
     .router()
-    .query('hello', {
+    .query('findAllMessages', {
         input: z
             .object({
-                text: z.string().nullish(),
+                userId: z.string().nullish(),
             })
             .nullish(),
-        resolve({ input }) {
-            return {
-                greeting: `hello ${input?.text ?? 'world'}`,
-            };
-        },
+        resolve: async ({ input }) => {
+            if (!input?.userId) {
+                return [];
+            }
+            const messages = await database.message.findMany({
+                where: {
+                    user_id: input.userId
+                },
+                orderBy: {
+                    created_at: 'desc'
+                }
+            })
+            return messages;
+        }
     });
 
 // export type definition of API

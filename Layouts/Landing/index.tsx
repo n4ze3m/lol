@@ -8,6 +8,7 @@ import {
   Indicator,
   Button,
 } from "@mantine/core";
+import { useUser } from "@supabase/auth-helpers-react";
 import { useRouter } from "next/router";
 import React from "react";
 
@@ -69,6 +70,15 @@ type Props = {
 function LandingLayout({ children }: Props) {
   const { classes } = useStyles();
   const router = useRouter();
+  const { user } = useUser();
+  const notRedirected = "/u/[username]";
+  React.useEffect(() => {
+    if (user) {
+      if (router.pathname !== notRedirected) {
+        router.push("/me");
+      }
+    }
+  }, [user]);
   return (
     <AppShell
       styles={(theme) => ({
