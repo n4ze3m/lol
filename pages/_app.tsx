@@ -44,6 +44,7 @@ function MyApp(props: AppProps) {
 }
 export default withTRPC<AppRouter>({
   config({ ctx }) {
+    console.log("Vercel", process.env.VERCEL_URL)
     const url = process.env.VERCEL_URL
       ? `https://${process.env.VERCEL_URL}/api/trpc`
       : "http://localhost:3000/api/trpc";
