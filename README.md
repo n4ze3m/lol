@@ -1,34 +1,41 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Lol Message
 
-## Getting Started
+Open source anonymous feedback and advice platform for anyone lol.
 
-First, run the development server:
+## Inspiration
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+Lol Message is inspired from the popular website NGL.link. I really liked the idea of anonymous feedback and advice platform and    wanted to build something similar for myself.
+So I decided to build a similar platform for myself and for others to use for free and open source.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## What it does
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+Similar NGL.link, You will get a link to share with your friends and family. Anyone who visits the link can send you a message. You can reply to the messages that you recevied via any social media platform installed on your phone.
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+## How we built it
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+![Lol Message](https://i.imgur.com/KJUMxkK.png)
 
-## Learn More
+I built this app using Next.js, Mantine UI, tRPC, Courier for Email Notifications, Supabase and Vercel for hosting
 
-To learn more about Next.js, take a look at the following resources:
+## Challenges we ran into
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+I had never used tRPC and Courier before. So I had to learn them from scratch. After learning them, I had to integrate them with my app. It was a bit challenging but I managed to do it.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## Accomplishments that we're proud of
 
-## Deploy on Vercel
+I am proud of the fact that I was able to build this app in such a short time. I am also proud of the fact that I was able to learn tRPC and Courier from scratch and integrate them with my app.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## What we learned
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+I learned how to use tRPC and Courier notifications.
+
+## What's next for Lol Message
+
+Mobile app with push notifications and more features.
+
+## Try it out
+
+[Send a message](https://lol-message.vercel.app/u/n4ze3m)
+
+[Github](https://github.com/n4ze3m/lol)
+
