@@ -13,6 +13,7 @@ datasource db {
 model profile {
   id           String    @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
   username     String
+  email        String
   email_notify Boolean   @default(true)
   question     String    @default("Send me anonymous messages lol!")
   pause        Boolean   @default(false)

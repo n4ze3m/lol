@@ -3,7 +3,7 @@ import { useUser } from "@supabase/auth-helpers-react";
 import { useRouter } from "next/router";
 import React from "react";
 import { trpc } from "utils/trpc";
-import { toBlob, toPng } from "html-to-image";
+import { toBlob } from "html-to-image";
 export const ABody = () => {
   const { user } = useUser();
 

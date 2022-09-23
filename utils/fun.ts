@@ -35,6 +35,18 @@ export const answerList = [
     'I love ice cream',
     'I hate pasta',
     'I hate pizza',
+    'Have your ever cheated, you gotta be honest lol',
+    'tell me something about yourself',
+    'tell me your crush',
+    'tell me your biggest fear',
+    'tell me your biggest regret',
+    'tell me your biggest secret, no one will know',
+    'what is your biggest insecurity',
+    'what is your biggest pet peeve',
+    'what is your biggest turn on',
+    'fantasy about me',
+    'favorite thing about me',
+    'Send me anonymous message!'
 ]
 
 export const emailSubjectList = [

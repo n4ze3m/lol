@@ -8,6 +8,7 @@ import { UserProvider } from "@supabase/auth-helpers-react";
 import { supabaseClient } from "@supabase/auth-helpers-nextjs";
 import React from "react";
 import { SupabaseProvider } from "utils/supabase";
+import { NotificationsProvider } from "@mantine/notifications";
 
 function MyApp(props: AppProps) {
   const { Component, pageProps } = props;
@@ -33,7 +34,9 @@ function MyApp(props: AppProps) {
             fontFamily: "Poppins",
           }}
         >
-          <Component {...pageProps} />
+          <NotificationsProvider>
+            <Component {...pageProps} />
+          </NotificationsProvider>
         </MantineProvider>
       </UserProvider>
     </SupabaseProvider>

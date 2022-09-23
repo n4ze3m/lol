@@ -10,8 +10,8 @@ import {
 import { useForm } from "@mantine/form";
 import { useMutation } from "react-query";
 import { supabaseClient } from "@supabase/auth-helpers-nextjs";
-// import { showNotification } from "@mantine/notifications";
-// import { useSupabaseClient } from "lib/supabase";
+import { showNotification } from "@mantine/notifications";
+
 
 type LoginProps = {
   email: string;
@@ -24,11 +24,11 @@ export default function LoginBody() {
 
   const { mutate: login, isLoading } = useMutation(onLogin, {
     onSuccess: () => {
-      //   showNotification({
-      //     message: "Check your email to verify your account",
-      //     color: "green",
-      //     title: "Success",
-      //   });
+        showNotification({
+          message: "Check your email to verify your account",
+          color: "green",
+          title: "Success",
+        });
     },
     onError: (e: any) => {
       const message =
@@ -36,11 +36,11 @@ export default function LoginBody() {
         e?.response?.data?.erorr ||
         e?.message ||
         "Unknown error";
-      //   showNotification({
-      //     message,
-      //     color: "red",
-      //     title: "Error",
-      //   });
+        showNotification({
+          message,
+          color: "red",
+          title: "Error",
+        });
     },
   });
 
