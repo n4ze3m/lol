@@ -183,7 +183,6 @@ function DashboardLayout({ children }: Props) {
     setEmail(user?.email || "...");
   }, [user]);
   const router = useRouter();
-  const [opened, setOpened] = React.useState(false);
   const { classes, cx } = useStyles();
   const [userMenuOpened, setUserMenuOpened] = React.useState(false);
 
@@ -211,14 +210,6 @@ function DashboardLayout({ children }: Props) {
                   height: "100%",
                 }}
               >
-                <MediaQuery largerThan="sm" styles={{ display: "none" }}>
-                  <Burger
-                    opened={opened}
-                    onClick={() => setOpened((o) => !o)}
-                    size="sm"
-                    mr="xl"
-                  />
-                </MediaQuery>
                 <Indicator inline label="alpha" offset={-4} size={12}>
                   <Text size="lg" onClick={() => router.push("/me")}>
                     Lol Message
