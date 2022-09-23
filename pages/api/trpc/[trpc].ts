@@ -1,6 +1,8 @@
 import * as trpc from "@trpc/server";
 import * as trpcNext from "@trpc/server/adapters/next";
+import { CourierClient } from "@trycourier/courier";
 import { database } from "utils/database";
+import { randomEmailSubject } from "utils/fun";
 import { z } from "zod";
 
 export const appRouter = trpc
@@ -173,15 +175,39 @@ export const appRouter = trpc
         });
       }
 
-      await database.message.create({
+      const answer = await database.message.create({
         data: {
           message: input.answer,
           user_id: input.userId,
           question: input.question,
         },
       });
+      // check if user enabled email notifications
+      if (user.email_notify) {
+        const courier = CourierClient({
+          authorizationToken:
+            process.env.COURIER_API_KEY
+        });
 
-      // send notification to user
+        const url = process.env.VERCEL_URL
+          ? `https://${process.env.VERCEL_URL}/me/a`
+          : "http://localhost:3000/me/a";
+
+        await courier.send({
+          message: {
+            to: {
+              email: user.email,
+            },
+            template: process.env.COURIER_TEMPLATE_ID as string,
+            data: {
+              subject: randomEmailSubject(),
+              username: user.username,
+              url: `${url}/${answer.id}`,
+              question: input.question,
+            },
+          },
+        });
+      }
 
       return {
         message: "ok",

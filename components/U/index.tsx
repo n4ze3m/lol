@@ -66,6 +66,9 @@ export const QBody = () => {
     },
   });
 
+  // Someone just submitted an message to your question !
+  // Click here to see it !
+
   return (
     <React.Fragment>
       <Container size={500} mt={80}>
