@@ -18,7 +18,7 @@ function MyApp(props: AppProps) {
       <UserProvider supabaseClient={supabaseClient}>
         <Head>
           <title>
-            Lol, I'm not sure what to put here, but I'm sure it's important
+           {"Lol, I'm not sure what to put here, but I'm sure it's important"}
           </title>
           <meta
             name="viewport"
