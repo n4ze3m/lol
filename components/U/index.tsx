@@ -38,6 +38,7 @@ export const QBody = () => {
         showNotification({
           message: "Your answer has been submitted",
         });
+        form.reset();
       },
       onError: (e: any) => {
         const message =
@@ -65,9 +66,6 @@ export const QBody = () => {
       },
     },
   });
-
-  // Someone just submitted an message to your question !
-  // Click here to see it !
 
   return (
     <React.Fragment>
@@ -124,9 +122,15 @@ export const QBody = () => {
               loading={isSubmittingAnswer}
               color="teal"
               fullWidth
+              disabled={userProfile?.pause}
             >
               Send
             </Button>
+            {userProfile?.pause && (
+              <Text align="center" size="sm" color="red" my="sm">
+                Oh no! This user has paused their inbox.
+              </Text>
+            )}
             <Text my="md" align="center" size="sm" color="dimmed">
               {"100% anonymous q&a"}
             </Text>

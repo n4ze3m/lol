@@ -35,7 +35,7 @@ export const InboxGrid = ({ data }: LolInbox) => {
         breakpoints={[
           { maxWidth: 755, cols: 3, spacing: "sm" },
           { maxWidth: 600, cols: 2, spacing: "sm" },
-          { maxWidth: 400, cols: 1, spacing: "sm" },
+          { maxWidth: 400, cols: 2, spacing: "sm" },
         ]}
       >
         {items}

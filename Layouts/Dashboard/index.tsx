@@ -172,7 +172,7 @@ const data = [
 ];
 function DashboardLayout({ children }: Props) {
   const [email, setEmail] = React.useState("...");
-  const {user } = useUser()
+  const { user } = useUser();
   const [avatar, setAvatar] = React.useState(
     "https://avatars.dicebear.com/api/jdenticon/xdsds-sdsdsds-dsdsds.svg?background=%230000ff"
   );
@@ -252,7 +252,10 @@ function DashboardLayout({ children }: Props) {
                     </UnstyledButton>
                   </Menu.Target>
                   <Menu.Dropdown>
-                    <Menu.Item icon={<Settings size={14} />}>
+                    <Menu.Item
+                      onClick={() => router.push("/me/settings")}
+                      icon={<Settings size={14} />}
+                    >
                       Settings
                     </Menu.Item>
                     <Menu.Divider />

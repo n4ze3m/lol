@@ -86,11 +86,14 @@ export const appRouter = trpc
         message: "ok",
       };
     },
-  }).query("questionAnswer", {
-    input: z.object({
-      userId: z.string().nullish(),
-      questionId: z.string().nullish(),
-    }).nullish(),
+  })
+  .query("questionAnswer", {
+    input: z
+      .object({
+        userId: z.string().nullish(),
+        questionId: z.string().nullish(),
+      })
+      .nullish(),
     resolve: async ({ input }) => {
       if (!input?.userId || !input?.questionId) {
         return null;
@@ -113,12 +116,13 @@ export const appRouter = trpc
         },
         data: {
           opened: true,
-        }
-      })
+        },
+      });
 
       return answer;
-    }
-  }).query("getProfileByUsername", {
+    },
+  })
+  .query("getProfileByUsername", {
     input: z
       .object({
         username: z.string().nullish(),
@@ -149,7 +153,8 @@ export const appRouter = trpc
 
       return user;
     },
-  }).mutation("answerQuestion", {
+  })
+  .mutation("answerQuestion", {
     input: z
       .object({
         userId: z.string().nullish(),
@@ -185,8 +190,7 @@ export const appRouter = trpc
       // check if user enabled email notifications
       if (user.email_notify) {
         const courier = CourierClient({
-          authorizationToken:
-            process.env.COURIER_API_KEY
+          authorizationToken: process.env.COURIER_API_KEY,
         });
 
         const url = process.env.VERCEL_URL
@@ -211,9 +215,96 @@ export const appRouter = trpc
 
       return {
         message: "ok",
+      };
+    },
+  })
+  .query("userSettings", {
+    input: z
+      .object({
+        userId: z.string().nullish(),
+      })
+      .nullish(),
+    resolve: async ({ input }) => {
+      if (!input?.userId) {
+        return null;
+      }
+      const user = await database.profile.findFirst({
+        where: {
+          id: input?.userId,
+        },
+      });
+      if (!user) {
+        return null;
+      }
+
+      let settings = [
+        {
+          label: "Email notifications",
+          name: "email_notify",
+          value: user.email_notify,
+          type: "boolean",
+        },
+        {
+          label: "Pause submissions",
+          name: "pause",
+          value: user.pause,
+          type: "boolean",
+        },
+      ];
+
+      return {
+        settings,
+      }
+    },
+  }).mutation("updateUserSettings", {
+    input: z
+      .object({
+        userId: z.string(),
+        name: z.string(),
+        value: z.boolean(),
+      }),
+    resolve: async ({ input }) => {
+      console.log(input);
+
+      const user = await database.profile.findFirst({
+        where: {
+          id: input?.userId,
+        }
+      })
+
+      console.log(user);
+
+      if (!user) {
+        return null;
+      }
+
+      if (input.name === "pause") {
+        await database.profile.update({
+          where: {
+            id: input.userId,
+          },
+          data: {
+            pause: input.value,
+          }
+        })
+      } else if (input.name === "email_notify") {
+        await database.profile.update({
+          where: {
+            id: input.userId,
+          },
+          data: {
+            email_notify: input.value,
+          }
+        })
+      } else {
+        return null;
+      }
+
+      return {
+        message: "ok"
       }
     }
-  })
+  });
 
 // export type definition of API
 export type AppRouter = typeof appRouter;
