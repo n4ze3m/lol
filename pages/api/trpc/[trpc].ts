@@ -193,8 +193,8 @@ export const appRouter = trpc
           authorizationToken: process.env.COURIER_API_KEY,
         });
 
-        const url = process.env.VERCEL_URL
-          ? `https://${process.env.VERCEL_URL}/me/a`
+        const url = process.env.NEXT_PUBLIC_HOSTNAME
+          ? `https://${process.env.NEXT_PUBLIC_HOSTNAME}/me/a`
           : "http://localhost:3000/me/a";
 
         await courier.send({

@@ -18,8 +18,8 @@ type LolProfileCard = {
 };
 
 export const ProfileCard = ({ data, onEdit }: LolProfileCard) => {
-  const url = process.env.VERCEL_URL
-    ? `https://${process.env.VERCEL_URL}/u`
+  const url = process.env.NEXT_PUBLIC_HOSTNAME
+    ? `https://${process.env.NEXT_PUBLIC_HOSTNAME}/u`
     : "http://localhost:3000/u";
 
   return (
